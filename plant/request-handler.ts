@@ -1,6 +1,8 @@
-import { Handler } from 'aws-lambda';
+import { Context, APIGatewayProxyEventV2 } from 'aws-lambda';
 
-export const handler: Handler = async (event, context) => {
+type LambdaHandler = (event: APIGatewayProxyEventV2, context: Context) => any;
+
+export const handler: LambdaHandler = async (event: APIGatewayProxyEventV2, context: Context) => {
     console.log('EVENT: \n' + JSON.stringify(event, null, 2));
     return context.logStreamName;
 };
